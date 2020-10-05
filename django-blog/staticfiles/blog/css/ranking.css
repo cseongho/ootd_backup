@@ -1,0 +1,53 @@
+.help {
+    background-color: cadetblue;
+    width: 80%;
+    margin-top: 1%;
+    padding-bottom: 5px;
+    margin-left: 10%;
+    margin-right: 10%;
+    padding-top: 20px;
+}
+
+.help3 {
+    background-color: burlywood;
+    width: 80%;
+    margin-top: 1%;
+    padding-bottom: 5px;
+    margin-left: 10%;
+    margin-right: 10%;
+    padding-top: 20px;
+}
+
+.help2 {
+    text-align: center;
+    margin-left: 10%;
+    margin-top: 10px;
+}
+.item {
+    width: 5%;
+    height: 25%;
+    text-align: center;
+    margin-left:138px;
+    margin-bottom: 30px;
+    float: left;
+}
+
+.item2 {
+    width: 5%;
+    height: 25%;
+    border-radius: 2.5%;
+    text-align: center;
+    margin-left:138px;
+    margin-bottom: 30px;
+    float: left;
+}
+
+.title {
+    margin-top: 50px;
+    margin-left:150px;
+}
+
+.subtitle {
+    text-align: center;
+    margin-top: 60px;
+}

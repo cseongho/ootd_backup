@@ -1,0 +1,289 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>OOTD :: Outfit Of The Day</title>
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+        <link rel="stylesheet" href="{% static 'blog/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'blog/css/bootstrap-theme.min.css' %}">
+        <link rel="stylesheet" href="{% static 'blog/css/fontAwesome.css' %}">
+        <link rel="stylesheet" href="{% static 'blog/css/light-box.css' %}">
+        <link rel="stylesheet" href="{% static 'blog/css/owl-carousel.css' %}">
+        <link rel="stylesheet" href="{% static 'blog/css/templatemo-style.css' %}">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+        <script src="{% static 'blog/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js' %}"></script>
+    </head>
+<body>
+  <header class="nav-down responsive-nav hidden-lg hidden-md">
+      <button type="button" id="nav-toggle" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+      </button>
+      <!--/.navbar-header-->
+      <div id="main-nav" class="collapse navbar-collapse">
+          <nav>
+              <ul class="nav navbar-nav">
+                  <li><a href="#top">Home</a></li>
+                  <li><a href="#featured">Featured</a></li>
+                  <li><a href="{% url 'feedback' %}">Feedback</a></li>
+                  <li><a href="{% url 'market' %}">Market</a></li>
+                  <li><a href="{% url 'ranking' %}">Ranking</a></li>
+                  <li><a href="{% url 'register' %}">Register</a></li>
+              </ul>
+          </nav>
+      </div>
+  </header>
+
+  <div class="sidebar-navigation hidde-sm hidden-xs">
+      <div class="logo">
+          <a href="{% url 'home' %}">OOTD</a>
+      </div>
+      <nav>
+          <ul>
+              <li>
+                  <a href="#top">
+                      <span class="rect"></span>
+                      <span class="circle"></span>
+                      Home
+                  </a>
+              </li>
+              <li>
+                  <a href="#featured">
+                      <span class="rect"></span>
+                      <span class="circle"></span>
+                      Featured
+                  </a>
+              </li>
+              <li>
+                <a href="{% url 'feedback' %}">
+                    <span class="rect"></span>
+                    <span class="circle"></span>
+                    Feedback
+                </a>
+            </li>
+            <li>
+              <a href="{% url 'market' %}">
+                  <span class="rect"></span>
+                  <span class="circle"></span>
+                  Market
+              </a>
+          </li>
+          <li>
+            <a href="{% url 'ranking' %}">
+                <span class="rect"></span>
+                <span class="circle"></span>
+                Ranking
+            </a>
+        </li>
+        <li>
+          <a href="{% url 'register' %}">
+              <span class="rect"></span>
+              <span class="circle"></span>
+              Register
+          </a>
+      </li>
+          </ul>
+      </nav>
+      <ul class="social-icons">
+          <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+          <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+          <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+          <li><a href="#"><i class="fa fa-rss"></i></a></li>
+          <li><a href="#"><i class="fa fa-behance"></i></a></li>
+      </ul>
+  </div>
+
+  <div class="slider">
+      <div class="Modern-Slider content-section" id="top">
+          <!-- Item -->
+          <div class="item item-1">
+              <div class="img-fill">
+              <div class="image"></div>
+              <div class="info">
+                  <div>
+                    <h1>Feedback</h1>
+                    <p>Sentra is free Bootstrap CSS Template by templatemo website.<br>
+                      Please share our site link to your friends.</p>
+                    <div class="white-button button">
+                        <a href="#featured">Discover More</a>
+                    </div>
+                  </div>
+                  </div>
+              </div>
+          </div>
+          <!-- // Item -->
+          <!-- Item -->
+          <div class="item item-2">
+              <div class="img-fill">
+                  <div class="image"></div>
+                  <div class="info">
+                  <div>
+                    <h1>Market</h1>
+                    <p>Support templatemo by sharing a link to your friends.
+        <br>Thank you for helping us.</p>
+                    
+                    <div class="white-button button">
+                        <a href="#featured">Share More</a>
+                    </div>
+                  </div>
+                  </div>
+              </div>
+          </div>
+          <!-- // Item -->
+          <!-- Item -->
+          <div class="item item-3">
+              <div class="img-fill">
+                  <div class="image"></div>
+                  <div class="info">
+                  <div>
+                    <h1>Ranking</h1>
+                    <p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices <br>posuere cubilia Curae; Sed at massa turpis.</p>
+                    
+                    <div class="white-button button">
+                        <a href="#featured">Learn More</a>
+                    </div>
+                  </div>
+                  </div>
+              </div>
+          </div>
+          <!-- // Item -->
+      </div>
+  </div>
+
+
+  <div class="page-content">
+      <section id="featured" class="content-section">
+          <div class="section-heading">
+              <h1>OOTD<br><em>Outfit Of The Day</em></h1>
+              <p>OOTD는 패션커뮤니티 사이트로서,
+              <br>대한민국 최고의 패션커뮤니티룰 꿈꿉니다.
+              <br><em>이미지를 클릭시 각 사이트로 이동됩니다!</em></p>
+          </div>
+          <div class="section-content">
+              <div class="owl-carousel owl-theme">
+                  <div class="item">
+                      <div class="image">
+                          <img src="{% static 'blog/img/1.jpg' %}" height="300" weight="300" alt="">
+                          <div class="featured-button button">
+                              <a href="{% url 'feedback' %}">Feedback Site</a>
+                          </div>
+                      </div>
+                      <div class="text-content">
+                          <h4>Feeback</h4>
+                          <hr>
+                          <p>Feedback 게시물을 올려 다양한 유저들로부터 feedback을 받으세요!</p>
+                      </div>
+                  </div>
+                  <div class="item">
+                      <div class="image">
+                          <img src="{% static 'blog/img/2.jpeg' %}" height="300" weight="300" alt="">
+                          <div class="featured-button button">
+                              <a href="{% url 'market' %}">Market Site</a>
+                          </div>
+                      </div>
+                      <div class="text-content">
+                          <h4>Market</h4>
+                          <hr>                          
+                          <p>다양한 패션 굿즈들을 사거나 팔 수 있습니다.</p>
+                      </div>
+                  </div>
+                  <div class="item">
+                      <div class="image">
+                          <img src="{% static 'blog/img/8.jpeg' %}" height="300" weight="300" alt="">
+                          <div class="featured-button button">
+                              <a href="{% url 'ranking' %}">Ranking Site</a>
+                          </div>
+                      </div>
+                      <div class="text-content">
+                          <h4>Ranking</h4>
+                          <hr>
+                          <p>실시간 나의 랭킹을 확인해보세요!</p>
+                      </div>
+                  </div>
+                  <div class="item">
+                    <div class="image">
+                        <img src="{% static 'blog/img/5.jpeg' %}" height="300" weight="300" alt="">
+                        <div class="featured-button button">
+                            <a href="{% url 'register' %}">Register Site</a>
+                        </div>
+                    </div>
+                    <div class="text-content">
+                        <h4>Register</h4>
+                        <hr>
+                        <p>회원가입을 통해 다양한 혜택을 누려보세요!</p>
+                    </div>
+                </div>
+              </div>
+          </div>
+      </section>
+    
+    
+     
+      
+      <section class="footer">
+          <p>Copyright &copy; 2020 OOTD
+          
+          . Design: Myoungji Univ. Likelion </p>
+      </section>
+  </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+
+<script src="{% static 'blog/js/vendor/bootstrap.min.js' %}"></script>
+
+<script src="{% static 'blog/js/plugins.js' %}"></script>
+<script src="{% static 'blog/js/main.js' %}"></script>
+
+<script>
+  // Hide Header on on scroll down
+  var didScroll;
+  var lastScrollTop = 0;
+  var delta = 5;
+  var navbarHeight = $('header').outerHeight();
+
+  $(window).scroll(function(event){
+      didScroll = true;
+  });
+
+  setInterval(function() {
+      if (didScroll) {
+          hasScrolled();
+          didScroll = false;
+      }
+  }, 250);
+
+  function hasScrolled() {
+      var st = $(this).scrollTop();
+      
+      // Make sure they scroll more than delta
+      if(Math.abs(lastScrollTop - st) <= delta)
+          return;
+      
+      // If they scrolled down and are past the navbar, add class .nav-up.
+      // This is necessary so you never see what is "behind" the navbar.
+      if (st > lastScrollTop && st > navbarHeight){
+          // Scroll Down
+          $('header').removeClass('nav-down').addClass('nav-up');
+      } else {
+          // Scroll Up
+          if(st + $(window).height() < $(document).height()) {
+              $('header').removeClass('nav-up').addClass('nav-down');
+          }
+      }
+      
+      lastScrollTop = st;
+  }
+</script>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
+
+</body>

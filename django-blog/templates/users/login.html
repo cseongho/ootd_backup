@@ -1,0 +1,49 @@
+{% extends "blog/base.html" %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8" style="margin-top: 3.1rem!important;">
+            <div class="content-section">
+                <form method="POST">
+                    {% csrf_token %}
+                    <fieldset class="form-group">
+                        <legend class="border-bottom mb-4" id="title">Log In</legend>
+                        {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+                        {% endfor %}
+                        {% endif %}
+                            <div id="div_id_username" class="form-group">
+                                <label for="id_username" class=" requiredField">
+                                    ID
+                                </label>
+                                <div class="">
+                                    <input type="text" name="username" autofocus class="textinput textInput form-control" required id="id_username"placeholder="아이디를 입력하세요">
+                                </div>
+                            </div>
+                            <div id="div_id_password" class="form-group">
+                                <label for="id_password" class=" requiredField">
+                                    Password
+                                </label>
+                                <div class="">
+                                    <input type="password" name="password" class="textinput textInput form-control" required id="id_password" placeholder="패스워드를 입력하세요">
+                                </div>
+                            </div>
+                    </fieldset>
+                    {% if request.GET.next %}
+                    <input type="hidden" name="next" value="{{ request.GET.next }}">
+                    {% endif %}
+                    <div class="form-group">
+                        <button class="btn btn-outline-info" type="submit">Login</button>
+                    </div>
+                </form>
+                <div class="border-top pt-3">
+                    <small class="text-muted">
+                        계정이 없으신가요? <a class="ml-2" href="{% url 'register' %}">회원가입 하기</a>
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

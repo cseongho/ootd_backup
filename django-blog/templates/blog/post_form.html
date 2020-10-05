@@ -1,0 +1,25 @@
+{% extends 'blog/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8" style="margin-top: 3.1rem!important;">
+				<div class="content-section">
+					{{ form.media }}
+					<form method="POST" action="" enctype="multipart/form-data">
+						{% csrf_token %}
+						<fieldset class="form-group">
+							<legend class="border-bottom mb-4">{{ title }} Post</legend>
+							<a href="{% url 'category_list' %}" class="btn btn-outline-dark mb-4" type="submit">Category Lists</a>
+							{{ form|crispy }}
+						</fieldset>
+						<div class="form-group">
+							<button class="btn btn-outline-dark" type="submit">{{ submit }}</button>
+						</div>
+					</form>
+				</div>
+			</div>
+			{% include 'blog/sidebar.html' %}
+		</div>
+	</div>
+{% endblock %}

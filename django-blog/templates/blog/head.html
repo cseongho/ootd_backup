@@ -1,0 +1,30 @@
+{% load static %}
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+{% if head_title %}
+	<title>{{ head_title }} - OOTD</title>
+{% else %}
+	<title>OOTD :: Outfit Of The Day</title>
+{% endif %}
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="all,follow">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<!-- Bootstrap CSS-->
+<link rel="stylesheet" href="{% static 'blog/vendor/bootstrap/css/bootstrap.min.css' %}">
+<!-- Font Awesome CSS-->
+<link rel="stylesheet" href="{% static 'blog/vendor/font-awesome/css/font-awesome.min.css' %}">
+<!-- Custom icon font-->
+<link rel="stylesheet" href="{% static 'blog/css/fontastic.css' %}">
+<!-- Google fonts - Open Sans-->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+<!-- Fancybox-->
+<link rel="stylesheet" href="{% static 'blog/vendor/@fancyapps/fancybox/jquery.fancybox.min.css' %}">
+<!-- Theme stylesheet-->
+<link rel="stylesheet" href="{% static 'blog/css/style.default.css' %}" id="theme-stylesheet">
+<!-- Custom stylesheet - for your changes-->
+<link rel="stylesheet" href="{% static 'blog/css/custom.css' %}">
+<!-- TinyMCE stylesheet-->
+<link rel="stylesheet" href="{% static 'blog/css/github.css' %}">
+<!-- Favicon-->
+<link rel="icon" href="{% static 'blog/img/favicon.ico' %}">

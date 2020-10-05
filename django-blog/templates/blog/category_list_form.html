@@ -1,0 +1,42 @@
+{% extends 'blog/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8" style="margin-top: 3.1rem!important;">
+				<div class="content-section">
+					{% if user.is_superuser %}
+					<a href="{% url 'category_create' %}" class="btn btn-outline-dark mb-4 mt-3" type="submit">Add New Category</a>
+					<a href="{% url 'post_create' %}" class="btn btn-outline-dark mb-4 mt-3 ml-2" type="submit">Back to Create Post</a>
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th scope="col">Category Name</th>
+								<th scope="col" class="text-center">Edit Category</th>
+								<th scope="col" class="text-center">Delete Category</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for cat in category %}
+							<tr>
+								<td>{{ cat }}</td>
+								<td class="text-center"><a href="{% url 'category_update' cat.slug %}" class="btn btn-dark" role="button">Edit</a></td>
+								<td class="text-center"><a href="{% url 'category_delete' cat.slug %}" class="btn btn-danger" role="button">Delete</a></td>
+							</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+					{% else %}
+					<h2>You are not allowed to view categories. Go back.</h2>
+					<div class="border-top pt-3">
+						<small class="text-muted">
+						<a href="{% url 'blog-home' %}" class="btn btn-outline-secondary">Back to home</a>
+						</small>
+					</div>
+					{% endif %}
+				</div>
+			</div>
+			{% include 'blog/sidebar.html' %}
+		</div>
+	</div>
+{% endblock %}

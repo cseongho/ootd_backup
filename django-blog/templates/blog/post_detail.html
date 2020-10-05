@@ -1,0 +1,107 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+	<div class="row">
+		<!-- Latest Posts -->
+		<main class="post blog-post col-lg-8">
+			<div class="container">
+				<div class="post-single">
+					<div class="post-thumbnail"><img src="{{ object.thumbnail.url }}" alt="..." class="img-fluid"></div>
+					<div class="post-details">
+						<div class="post-meta d-flex justify-content-between">
+							<div class="category">
+								{% for cat in object.categories.all %}
+									<a href="{% url 'post_by_category' cat.slug %}">{{ cat }}</a>
+								{% endfor %}
+							</div>
+							<div class="mr-auto"></div>
+							{% if user %}
+								<a href="{% url 'post_update' object.slug %}" class="btn btn-primary mr-2" role="button">수정하기</a>
+								<a href="{% url 'post_delete' object.slug %}" class="btn btn-danger" role="button">삭제하기</a>
+							{% endif %}
+						</div>
+						<h1 class="text-capitalize">{{ object.title }}<a href="#"><i class="fa fa-bookmark-o"></i></a></h1>
+						<div class="post-footer d-flex align-items-center flex-column flex-sm-row">
+							<div class="author d-flex align-items-center flex-wrap">
+								<div class="avatar"><img src="{{ object.author.profile.image.url }}" alt="..." class="img-fluid"></div>
+								<div class="title"><span>{{ object.author }}</span></div>
+							</div>
+							<div class="d-flex align-items-center flex-wrap">
+								<div class="date"><i class="icon-clock"></i> {{ object.timestamp|timesince }}</div>
+								<div class="comments meta-last"><i class="icon-comment"></i>{{ object.comments.count }}</div>
+							</div>
+						</div>
+						<div class="post-body">
+							{{ object.content|safe }}
+						</div>
+						<div class="posts-nav d-flex justify-content-between align-items-stretch flex-column flex-md-row">
+							{% if object.previous_post %}
+								<a href="{{ object.previous_post.get_absolute_url }}" class="prev-post text-left d-flex align-items-center">
+									<div class="icon prev"><i class="fa fa-angle-left"></i></div>
+									<div class="text">
+										<strong class="text-primary">Previous Post </strong>
+										<h6>{{ object.previous_post.title }}</h6>
+									</div>
+								</a>
+							{% endif %}
+							{% if object.next_post %}
+								<a href="{{ object.next_post.get_absolute_url }}" class="next-post text-right d-flex align-items-center justify-content-end">
+									<div class="text">
+										<strong class="text-primary">Next Post </strong>
+										<h6>{{ object.next_post.title }}</h6>
+									</div>
+									<div class="icon next"><i class="fa fa-angle-right">   </i></div>
+								</a>
+							{% endif %}
+						</div>
+						<div class="post-comments">
+							<header>
+								<h3 class="h6">피드백 남기기<span class="no-of-comments">({{ object.comments.count }})</span></h3>
+							</header>
+							{% for comment in object.get_comments %}
+								<div class="comment">
+									<div class="comment-header d-flex justify-content-between">
+										<div class="user d-flex align-items-center">
+											<div class="image">
+												<img src="{{ comment.user.profile.image.url }}" alt="..." class="img-fluid rounded-circle">
+											</div>
+											<div class="title"><strong>{{ comment.user.username }}</strong><span class="date">{{ comment.created_on|timesince }} ago</span></div>
+										</div>
+									</div>
+									<div class="comment-body">
+										{{ comment.content }}
+									</div>
+								</div>
+							{% endfor %}
+						</div>
+						{% if request.user.is_authenticated %}
+							<div class="add-comment" id="leave-a-reply">
+								<header>
+									<h3 class="h6">댓글</h3>
+								</header>
+								<form method="POST" action="." class="commenting-form">
+									{% csrf_token %}
+									<div class="row">
+										<div class="form-group col-md-12">
+											{{ form.content }}
+										</div>
+										<div class="form-group col-md-12">
+											<button type="submit" class="btn btn-secondary">댓글달기</button>
+										</div>
+									</div>
+								</form>
+							</div>
+						{% else %}
+							<div class="add-comment" id="leave-a-reply">
+								<div class="form-group col-md-12">
+									<a href="{% url 'login' %}?next={{request.path}}#leave-a-reply" class="btn btn-secondary">Log into comment</a>
+								</div>
+							</div>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+		</main>
+{% include 'blog/sidebar.html' %}
+{% endblock %}

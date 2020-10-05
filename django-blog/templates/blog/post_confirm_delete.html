@@ -1,0 +1,22 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+<div class="container">
+	<div class="row justify-content-center">
+		<div class="col-lg-8" style="margin-top: 3.1rem!important;">
+			<div class="content-section">
+				<form method="POST" action="">
+					{% csrf_token %}
+					<fieldset class="form-group">
+						<legend class="border-bottom mb-4">게시글 삭제</legend>
+						<h2>"{{ object.title }}" 글을 삭제 하시겠습니까?</h2>
+					</fieldset>
+					<div class="form-group mb-5">
+						<button class="btn btn-outline-danger" type="submit">삭제하기</button>
+						<a class="btn btn-outline-secondary" type="submit" href="{% url 'post_detail' object.slug %}">취소하기</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

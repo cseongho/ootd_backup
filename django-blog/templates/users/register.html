@@ -1,0 +1,47 @@
+{% extends 'blog/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8" style="margin-top: 3.1rem!important;">
+      <div class="content-section">
+        <form method="POST" action="">
+          {% csrf_token %}
+          <fieldset class="form-group">
+            <legend class="border-bottom mb-4">회원가입</legend>
+            {{ form|crispy }}
+          </fieldset>
+          <div class="form-group">
+            <button class="btn btn-outline-info" type="submit">회원가입</button>
+          </div>
+        </form>
+        <div class="border-top pt-3">
+          <small class="text-muted">
+            이미 계정이 있으신가요? <a href="{% url 'login' %}" class="ml-2">Log In</a>
+          </small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+    var form_fields = document.getElementsByTagName('input')
+    form_fields[2].placeholder='Username';
+    form_fields[3].placeholder='First name';
+    form_fields[4].placeholder='Last name';
+    form_fields[5].placeholder='Email';
+    form_fields[6].placeholder='Enter password';
+    form_fields[7].placeholder='Re-enter Password';
+
+
+    for (var field in form_fields){ 
+      form_fields[field].className += ' form-control';
+
+    }
+
+    var ul_fields = document.getElementsByTagName('ul')
+    for (var field in ul_fields){ 
+      ul_fields[field].className += ' ul-list-class';
+    }
+  </script>
+{% endblock content %}

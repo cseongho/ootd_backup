@@ -1,0 +1,124 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block content %}
+	<div class="container">
+		<div class="row">
+			<!-- Latest Posts -->
+			<main class="posts-listing col-lg-8">
+				<div class="container">
+					<div class="row">
+						{% if request.GET.q %}
+							<h2 class="container mb-5">Search Result: {{ request.GET.q }}</h2>
+						{% else %}
+							<h2 class="container mb-5">You did not search anything.</h2>
+						{% endif %}
+						<!-- post -->
+						{% if query %}
+							{% for post in search_queryset %}
+								<div class="post col-xl-6">
+									<div class="post-thumbnail">
+										<a href="{% url 'post_detail' post.slug %}">
+										<img src="{{ post.thumbnail.url }}" alt="..." class="img-fluid" width="640" height="426"></a>
+									</div>
+									<div class="post-details">
+										<div class="post-meta d-flex justify-content-between">
+											<div class="date meta-last">{{ post.timestamp|date:"d M | Y" }}</div>
+											<div class="category">
+												{% for cat in post.categories.all %}
+													<a href="{% url 'post_by_category' cat.slug %}">{{ cat }}</a>
+												{% endfor %}
+											</div>
+										</div>
+										<a href="{% url 'post_detail' post.slug %}">
+											<h3 class="h4 text-capitalize">{{ post.title }}</h3>
+										</a>
+										<p class="text-muted">{{ post.overview|truncatewords:27 }}<a href="{% url 'post_detail' post.slug %}"><u>continue reading &rarr;</u></a></p>
+										<footer class="post-footer d-flex align-items-center">
+											<div class="author d-flex align-items-center flex-wrap">
+												<div class="avatar">
+													<img src="{{ post.author.profile.image.url }}" alt="..." class="img-fluid">
+												</div>
+												<div class="title"><span>{{ post.author }}</span></div>
+											</div>
+											<div class="date"><i class="icon-clock"></i> {{ post.timestamp|timesince }} </div>
+											<div class="comments meta-last"><i class="icon-comment"></i>{{ post.comments.count }}</div>
+										</footer>
+									</div>
+								</div>
+							{% endfor %}
+						{% endif %}
+					</div>
+					<!-- Pagination -->
+					<nav aria-label="Page navigation example">
+						<ul class="pagination pagination-template d-flex justify-content-center">
+							{% if query %}
+								{% if is_paginated %}
+									{% if page_obj.has_previous %}
+										<a href="?q={{ request.GET.q }}&page=1" class="btn btn-outline-secondary rounded"><i class="fa fa-angle-left mr-2"></i>first</a>
+										<li class="page-item text-center">
+											<a href="?q={{ request.GET.q }}&page={{ page_obj.previous_page_number }}" class="page-link"><i class="fa fa-angle-left"></i>
+											</a>
+										</li>
+									{% endif %}
+									{% for num in page_obj.paginator.page_range %}
+										{% if page_obj.number == num %}
+											<li class="page-item text-center"><a href="?q={{ request.GET.q }}&page=1" class="page-link active">{{ num }}</a></li>
+											{% elif num > page_obj.number|add:'-2' and num < page_obj.number|add:'2' %}
+											<li class="page-item text-center"><a href="?q={{ request.GET.q }}&page={{ num }}" class="page-link">{{ num }}</a></li>
+										{% endif %}
+									{% endfor %}
+									{% if page_obj.has_next %}
+										<li class="page-item text-center">
+											<a href="?q={{ request.GET.q }}&page={{ page_obj.next_page_number }}" class="page-link">
+												<i class="fa fa-angle-right"></i>
+											</a>
+										</li>
+										<a href="?q={{ request.GET.q }}&page={{ page_obj.paginator.num_pages }}" class="btn btn-outline-secondary rounded">Last<i class="fa fa-angle-right ml-2"></i></a>
+									{% endif %}
+								{% endif %}
+							{% endif %}
+						</ul>
+					</nav>
+				</div>
+			</main>
+			{% include 'blog/sidebar.html' %}
+			<section class="latest-posts" style="padding: 15px 0px 50px 0px;">
+				<div class="container">
+					<header>
+						<h2>Latest from the blog</h2>
+						<p class="text-big">Django Blog For You</p>
+					</header>
+					<div class="row">
+						{% for post in most_recent %}
+							<div class="post col-md-4">
+								<div class="post-thumbnail"><a href="{% url 'post_detail' post.slug %}"><img src="{{ post.thumbnail.url }}"
+								alt="..." class="img-fluid"></a></div>
+								<div class="post-details">
+									<div class="post-meta d-flex justify-content-between">
+										<div class="date meta-last">{{ post.timestamp|date:"d M | Y" }}</div>
+										<div class="category">
+											{% for cat in post.categories.all %}
+												<a href="#">{{ cat }}</a>
+											{% endfor %}
+										</div>
+									</div><a href="{% url 'post_detail' post.slug %}">
+									<h3 class="h4">{{ post.title}}</h3>
+								</a>
+								{% if post.content|length > 100 %}
+									<p class="text-muted">{{ post.overview|truncatewords:25 }}</p>
+									<div class="text-right">
+										<a href="{% url 'post_detail' post.slug %}" class="btn btn-outline-secondary rounded">Read More</a>
+									</div>
+								{% else %}
+									<p class="text-muted">{{ post.overview }}</p>
+									<div class="text-right">
+										<a href="{% url 'post_detail' post.slug %}" class="btn btn-outline-secondary rounded">Read More</a>
+									</div>
+								{% endif %}
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+		</section>
+	{% endblock %}
